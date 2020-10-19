@@ -1,7 +1,6 @@
 import Header from '../dashboard/Header'
 import React from 'react'
 
-
 const VoiceRecorder = () => {
     return (
         <div>
@@ -11,4 +10,3 @@ const VoiceRecorder = () => {
 }
 
 export default VoiceRecorder
-
