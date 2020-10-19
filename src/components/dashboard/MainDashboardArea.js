@@ -42,7 +42,9 @@ export const MainDashboardArea = (props) => {
     }
     
 
-const speechConfig = sdk.SpeechConfig.fromSubscription("46120d9c892f430a8a7b2033df62afdc", "southeastasia");
+const speechConfig = sdk.SpeechConfig.fromSubscription("1e9f218f68224ca5a876f82fa7602f8b", "centralindia");
+speechConfig.enableDictation();
+speechConfig.speechRecognitionLanguage='en-IN';
 const audioConfig = sdk.AudioConfig.fromDefaultMicrophoneInput();
 const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
 
