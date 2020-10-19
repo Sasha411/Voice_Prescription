@@ -142,7 +142,7 @@ const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
         </>
     }
 }
-
+//comment
 
 function handleClick(event) {
     event.preventDefault();
