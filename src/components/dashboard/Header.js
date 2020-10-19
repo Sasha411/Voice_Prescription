@@ -13,6 +13,7 @@ import SideNavigation from './SideNavigation';
 import {MainDashboardArea} from './MainDashboardArea';
 
 
+
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
