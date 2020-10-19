@@ -10,6 +10,8 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import {openDrawer, closeDrawer} from '../actions'
 import { connect } from 'react-redux';
 import SideNavigation from './SideNavigation';
+import {MainDashboardArea} from './MainDashboardArea';
+
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -21,10 +23,18 @@ const useStyles = makeStyles((theme) => ({
             background: "rgba(189, 251, 248, 0.56)",
          },
     },
+    mainDrawer: {
+        width: '250px',
+        height: '100vh',
+        backgroundColor: 'rgba(189, 251, 248, 0.56)',
+    },
     drawer: {
         width: '250px',
         height: '100vh',
         backgroundColor: 'rgba(189, 251, 248, 0.56)',
+        
+    },
+    mainDashboard: {
         
     }
 }));
@@ -157,6 +167,27 @@ const prevOpen = React.useRef(open);
                     </Grid>
                 </Toolbar>
             </AppBar>
+            <Hidden smDown>
+                    <Paper
+                        variant="outlined"
+                        
+                    >
+                        <Grid container
+                            justify="flex-start"
+                            alignItems="flex-start"
+                            direction="row"
+                        >
+                            <Grid item className={classes.mainDrawer}>
+                            <SideNavigation />
+                            </Grid>
+                            <Grid item
+                            className={classes.mainDashboard}
+                            >
+                            <MainDashboardArea />
+                            </Grid>
+                        </Grid>
+                    </Paper>
+                </Hidden>
         </div>
     )
 }
