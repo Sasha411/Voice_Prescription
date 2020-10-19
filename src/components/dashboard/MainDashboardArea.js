@@ -4,7 +4,6 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import {useLocation, Redirect} from 'react-router-dom'
-import useRecord from './useRecord';
 import * as sdk from 'microsoft-cognitiveservices-speech-sdk'
 import { Button, TextField } from '@material-ui/core';
 
@@ -24,11 +23,16 @@ const useStyles = makeStyles((theme) => ({
     buttons: {
         marginLeft: "20px",
     },
+    note: {
+        marginTop: "40px",
+        marginLeft: "10px",
+    }
 }));
 
 export const MainDashboardArea = (props) => {
     const classes = useStyles();
     const [text,setText] = React.useState([]);
+    //const [stop,setStop] = React.useState(null);
     ///
 
      //speech to text
@@ -42,35 +46,53 @@ const speechConfig = sdk.SpeechConfig.fromSubscription("46120d9c892f430a8a7b2033
 const audioConfig = sdk.AudioConfig.fromDefaultMicrophoneInput();
 const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
 
-recognizer.recognizing = (s, e) => {
-    console.log(text);
-};
+// if(stop===null || stop===true){
+//     recognizer.speechEndDetected = (s, e) => {
+//         recognizer.stopContinuousRecognitionAsync();
+//     }
+//     recognizer.speechEndDetected();
+//     recognizer.sessionStopped = (s, e) => {
+//         console.log("\n    Session stopped event.");
+//         recognizer.stopContinuousRecognitionAsync();
+//     };
 
-recognizer.recognized = (s, e) => {
-    if (e.result.reason === sdk.ResultReason.RecognizedSpeech) {
-        console.log(`RECOGNIZED: Text=${e.result.text}`);
-        setText(text => [...text, e.result.text]);
-    } else if (e.result.reason === sdk.ResultReason.NoMatch) {
-        console.log("NOMATCH: Speech could not be recognized.");
-    }
-};
+// }
+// else{
+    recognizer.recognizing = (s, e) => {
+   
+    };
+    
+    recognizer.recognized = (s, e) => {
+        
+        if (e.result.reason === sdk.ResultReason.RecognizedSpeech) {
+            if(e.result.text === 'Stop.' || e.result.text === 'stop.'){
+                recognizer.stopContinuousRecognitionAsync();
+            }
+            setText(text => [...text, e.result.text]);
+            
+        } else if (e.result.reason === sdk.ResultReason.NoMatch) {
+            console.log("NOMATCH: Speech could not be recognized.");
+        }
+        
+    };
+    
+    recognizer.canceled = (s, e) => {
+        console.log(`CANCELED: Reason=${e.reason}`);
+    
+        if (e.reason === sdk.CancellationReason.Error) {
+            console.log(`"CANCELED: ErrorCode=${e.errorCode}`);
+            console.log(`"CANCELED: ErrorDetails=${e.errorDetails}`);
+            console.log("CANCELED: Did you update the subscription info?");
+        }
+    
+        recognizer.stopContinuousRecognitionAsync();
+    };
+    
+//}
 
-recognizer.canceled = (s, e) => {
-    console.log(`CANCELED: Reason=${e.reason}`);
 
-    if (e.reason === sdk.CancellationReason.Error) {
-        console.log(`"CANCELED: ErrorCode=${e.errorCode}`);
-        console.log(`"CANCELED: ErrorDetails=${e.errorDetails}`);
-        console.log("CANCELED: Did you update the subscription info?");
-    }
 
-    recognizer.stopContinuousRecognitionAsync();
-};
 
-recognizer.sessionStopped = (s, e) => {
-    console.log("\n    Session stopped event.");
-    recognizer.stopContinuousRecognitionAsync();
-};
 
     ///
     
@@ -101,18 +123,22 @@ recognizer.sessionStopped = (s, e) => {
                     multiline
                 />
                 <Button className={classes.buttons}
-                        onClick={() => recognizer.startContinuousRecognitionAsync()}
+                        onClick={() => {recognizer.startContinuousRecognitionAsync()}}
                         variant="outlined"
                         color="primary">
                     Start Recording
                 </Button>
-                <Button className={classes.buttons}
-                        onClick={() => recognizer.stopContinuousRecognitionAsync()}
+                {/* <Button className={classes.buttons}
+                        onClick={() => { 
+                            recognizer.stopContinuousRecognitionAsync();
+                            setStop(true);
+                            }}
                         variant="outlined"
                         color="secondary">
                     Stop Recording
-                </Button>
+                </Button> */}
             </form>
+            <Typography className={classes.note} color="primary">* Say Stop to end the recording</Typography>
         </>
     }
 }
