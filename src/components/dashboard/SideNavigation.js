@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
     },
     userIcon: {
         fontSize: '80px',
+    },
+    link2: {
+        color: '#008080',
     }
 }))
 
@@ -27,12 +30,12 @@ const SideNavigation = () => {
                 alignItems="center"
                 
             >
-                <Grid item>
+                <Grid item><Link className={classes.link2} to="/profile">
                 <IconButton
 
-                >
-                    <AccountCircleIcon className={classes.userIcon} />
+                ><AccountCircleIcon className={classes.userIcon} />
                 </IconButton>
+                </Link>
                 </Grid>
                 <Grid item>
                     Doctor : Hey You

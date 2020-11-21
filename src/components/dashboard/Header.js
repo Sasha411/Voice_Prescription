@@ -11,6 +11,7 @@ import {openDrawer, closeDrawer} from '../actions'
 import { connect } from 'react-redux';
 import SideNavigation from './SideNavigation';
 import {MainDashboardArea} from './MainDashboardArea';
+import { Link } from 'react-router-dom';
 
 
 
@@ -162,7 +163,7 @@ const prevOpen = React.useRef(open);
                         color="inherit"
                         aria-label="user"
                     >
-                        <AccountCircleIcon/>
+                        <Link style={{color: "white"}} to='/profile'><AccountCircleIcon/></Link>
                     </IconButton>
                     </Grid>
                     </Grid>

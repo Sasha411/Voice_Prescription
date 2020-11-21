@@ -4,6 +4,7 @@ import history from '../history'
 import Login from './loginpage/Login'
 import Dashboard from './dashboard/Dashboard'
 import VoiceRecorder from './voicerecord/VoiceRecorder'
+import Profile from './profile/Profile'
 
 export class App extends Component {
     render() {
@@ -13,6 +14,7 @@ export class App extends Component {
                 <Route path="/dashboard" exact component={Dashboard} />
                 <Route path="/recordvoice" exact component={VoiceRecorder} />
                 <Route path="/voicehistory" exact component={null} />
+                <Route path="/profile" exact component={Profile} />
             </Router>
         )
     }
