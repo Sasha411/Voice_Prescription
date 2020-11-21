@@ -1,4 +1,4 @@
-import { AppBar, CssBaseline, Grid, Hidden, IconButton, makeStyles, Paper, Toolbar } from '@material-ui/core';
+import { AppBar, CssBaseline, Grid, Hidden, IconButton, makeStyles, Paper, TextField, Toolbar, Typography } from '@material-ui/core';
 import React from 'react'
 import MenuIcon from '@material-ui/icons/Menu';
 import DashboardIcon from '@material-ui/icons/Dashboard';
@@ -19,8 +19,13 @@ const useStyles = makeStyles((theme)=> ({
         marginTop: "20px",
     },
     paper: {
-        height: "40vh",
-        width: "25vw",
+        //height: "40vh",
+        //width: "25vw",
+        minWidth: "25vw",
+    },
+    gridItem: {
+        marginTop: "10px",
+        marginBottom: "10px",
     }
 }) )
 
@@ -37,7 +42,14 @@ const Profile = () => {
       const handleDrawerClose = () => {
         setOpen(false);
       };
-
+      //Helper Functions
+      const createGridItem = (item) =>{
+            return (
+                <Grid className={classes.gridItem} item>
+                    <TextField autoComplete label={item}/>
+                </Grid>
+            )
+      }
     //Return
     return (
         <>
@@ -65,14 +77,52 @@ const Profile = () => {
                 alignItems="center"
                 className={classes.mainGrid}
             >
+                
                 <Grid item>
                     <Paper className={classes.paper}>
-                        Left Side
+                        <Grid container
+                            direction="column"
+                            justify="flex-end"
+                            alignItems="center"
+                        >
+                            <Grid item>
+                                <Typography variant="h4" gutterBottom>Doctor's Details</Typography>
+                            </Grid>
+                            {createGridItem("First Name")}
+                            {createGridItem("Last Name")}
+                            {createGridItem("Age")}
+                            {createGridItem("Gender")}
+                            {createGridItem("Phone Number")}
+                            {createGridItem("Email")}
+                            {createGridItem("Qualification")}
+                            {createGridItem("Specialization")}
+                            {/* {createGridItem("State Registration Number")} */}
+                            <Grid style={{marginTop: "10px", marginBottom: "45px"}} item>
+                                <TextField label="State Registration Number"/>
+                            </Grid>
+                            
+                        </Grid>
                     </Paper>
                 </Grid>
                 <Grid item>
                     <Paper className={classes.paper}>
-                        Right Side
+                    <Grid container
+                            direction="column"
+                            justify="flex-end"
+                            alignItems="center"
+                        >
+                            <Grid item>
+                                <Typography variant="h4" gutterBottom>Hospital's Details</Typography>
+                            </Grid>
+                    {createGridItem("Name")}
+                    {createGridItem("Address")}
+                    {createGridItem("CIN")}
+                    {createGridItem("Registered Office")}
+                    {createGridItem("Contact Number")}
+                    <Grid style={{marginTop: "10px", marginBottom: "45px"}} item>
+                        <TextField label="Email"/>
+                    </Grid>
+                    </Grid>
                     </Paper>
                 </Grid>
             </Grid>
