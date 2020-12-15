@@ -1,9 +1,8 @@
 import { AppBar, Badge, Button, Grid, Grow, Hidden, IconButton, makeStyles, Paper, Popper, SwipeableDrawer, Toolbar } from '@material-ui/core';
 import React from 'react'
 import MenuIcon from '@material-ui/icons/Menu';
-import SettingsIcon from '@material-ui/icons/Settings';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -12,10 +11,11 @@ import { connect } from 'react-redux';
 import SideNavigation from './SideNavigation';
 import {MainDashboardArea} from './MainDashboardArea';
 import { Link } from 'react-router-dom';
-
+import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
 
 
 const useStyles = makeStyles((theme) => ({
+
     grow: {
         flexGrow: 1,
     },
@@ -79,7 +79,7 @@ const prevOpen = React.useRef(open);
 
     return (
         <div className={classes.grow}>
-            <AppBar style={{backgroundColor: "#008080"}} position="static">
+            <AppBar style={{backgroundColor: "#F8F8F8"}} position="static">
                 <Toolbar>
                     <Hidden mdUp>
                         <Button
@@ -114,21 +114,16 @@ const prevOpen = React.useRef(open);
                     </Hidden>
                     <Grid container justify="flex-end">
                     <Grid item>
-                    <Button
-                        color="inherit"
-                        ref={anchorRef}
-                        onClick={handleToggle}
-                    >
                     <IconButton
                         
-                        color="inherit"
+                        ref={anchorRef}
+                        onClick={handleToggle}
                         aria-label="show new notifications"
                     >
-                        <Badge badgeContent={3} color="secondary">
-                            <NotificationsIcon />
+                        <Badge badgeContent={0} color="secondary">
+                            <NotificationsNoneOutlinedIcon/>
                         </Badge>
                     </IconButton>
-                    </Button>
                     <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                         {({ TransitionProps, placement}) => (
                             <Grow 
@@ -151,19 +146,17 @@ const prevOpen = React.useRef(open);
                     <Grid item>
                     <IconButton
                         
-                        color="inherit"
                         aria-label="settings"
                     >
-                        <SettingsIcon />
+                        <SettingsOutlinedIcon />
                     </IconButton>
                     </Grid>
                     <Grid item>
                     <IconButton
                         edge="end"
-                        color="inherit"
                         aria-label="user"
                     >
-                        <Link style={{color: "white"}} to='/profile'><AccountCircleIcon/></Link>
+                        <Link style={{color: "rgba(0, 0, 0, 0.54)"}} to='/profile'><AccountCircleOutlinedIcon/></Link>
                     </IconButton>
                     </Grid>
                     </Grid>
