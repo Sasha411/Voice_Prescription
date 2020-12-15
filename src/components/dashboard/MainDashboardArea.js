@@ -21,12 +21,24 @@ const useStyles = makeStyles((theme) => ({
     messg: {
         paddingTop: "20px",
     },
-    buttons: {
+    buttonsp: {
         marginLeft: "20px",
+        marginTop: "20px",
+        backgroundColor: "#009688",
+        color: "white",
+        fontWeight: "bold",
+        fontFamily: "Source Sans Pro",
+        padding: "15px 25px",
+        minWidth: "200px",
+
     },
     note: {
         marginTop: "40px",
         marginLeft: "10px",
+        color: "#009688",
+        fontFamily: "Arimo",
+        fontWeight: "bold",
+        fontSize: "20px",
     },
     ppr: {
         marginTop: "40px",
@@ -36,7 +48,24 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "5px",
         fontSize: "1.5em",
         //marginLeft: "10px",
-    }
+    },
+    primary:{
+        color: "#6FE2D7",
+        fontFamily: "Arimo",
+        fontWeight: "bold",
+    },
+    secondary:{
+        color: "#000000",
+        fontFamily: "Arimo",
+        fontWeight: "bold",
+
+    },
+    text_1:{
+        color: "#009688",
+        fontFamily: "Arimo",
+        fontWeight: "bold",
+        fontSize: "26px",
+    },
 }));
 
 export const MainDashboardArea = (props) => {
@@ -44,7 +73,7 @@ export const MainDashboardArea = (props) => {
     const [text,setText] = React.useState("");
     const [prev,setPrev] = React.useState(false);
     const [rec,setRec] = React.useState({
-        Name: "Dummy",
+        Name: "",
         Age: 0,
         Gender: "",
         Symptoms: "",
@@ -87,12 +116,6 @@ export const MainDashboardArea = (props) => {
     const createGridItem = (field) => {
         return (
             <Grid item>
-                {/* <Typography
-                color="primary"
-                className={classes.gItem}
-                >
-                    {field}: {rec[field]}
-                </Typography> */}
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -100,11 +123,7 @@ export const MainDashboardArea = (props) => {
                     label={field}
                     defaultValue={rec[field]}
                     onChange={(e) => {dummy_rec[field]=e.target.value}}
-                    //name="firstname"
-                    //autoComplete="firstname"
-                    //autoFocus
                 /> 
-                
             </Grid>
         )
     }
@@ -132,27 +151,37 @@ export const MainDashboardArea = (props) => {
                         className={classes.ppr}
                     >
                         <Grid container
-                            justify="flex-start"
-                            alignItems="flex-start"
-                            direction="column"
-                            
+                            justify="center"
+                            alignItems="center"
+                            direction="row"
                         >
-                            {createGridItem("Name")}
-                            {createGridItem("Age")}
-                            {createGridItem("Gender")}
-                            {createGridItem("Symptoms")}
-                            {createGridItem("Diagnosis")}
-                            {createGridItem("Prescription")}
-                            {createGridItem("Advice")}
+                            <Grid container item xs={4}
+                                direction="column"
+                            >
+                                {createGridItem("Name")}
+                                {createGridItem("Age")}
+                                {createGridItem("Gender")}
+                                {createGridItem("Symptoms")}
+                            </Grid>
+                            <Grid container item xs={4}
+                                direction="column"
+                            >
+                                {createGridItem("Diagnosis")}
+                                {createGridItem("Prescription")}
+                                {createGridItem("Advice")}
+                                <Grid item>
+                                    <Button style={{marginTop: "10px"}} className={classes.buttons}
+                                        onClick={() => {saveBoxes()}}
+                                        variant="outlined"
+                                        color="primary"
+                                    >
+                                        Save Changes
+                                    </Button>    
+                                </Grid>
+                            </Grid>
                         </Grid>
                         
                     </Paper>
-                <Button style={{marginTop: "10px"}} className={classes.buttons}
-                        onClick={() => {saveBoxes()}}
-                        variant="outlined"
-                        color="primary">
-                    Save Changes
-                </Button>
 
                 </div>
             )
@@ -280,40 +309,59 @@ const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
         return <>
             <Breadcrumbs separator="›"
                          aria-label="breadcrumb">
-                <Link color="inherit"
+                <Link className={classes.primary}
                       href="/"
                       onClick={handleClick}>
                     RecordVoice
                 </Link>
-                <Typography color="textPrimary">Main</Typography>
+                <Typography className={classes.secondary}>Home</Typography>
             </Breadcrumbs>
             <div className={classes.messg}>
-                <Typography color="primary">This will record your voice and store it</Typography>
+                <Typography className={classes.text_1} >Record your voice here:-</Typography>
             </div>
-            <form className={classes.root}
-                  noValidate
-                  autoComplete="off">
+            <Grid container 
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+            >
+                <Grid item container
+                    alignItems="flex-start"
+                    direction="column"
+                    xs={7}
+                >
+                    <Grid className={classes.root} item>
                 <TextField
                     id="standard-textarea"
                     label="Speech To Text"
                     placeholder="Message Displayed Here"
                     value={text}
                     multiline
-                />
-                <Button className={classes.buttons}
-                        onClick={() => {recognizer.startContinuousRecognitionAsync()}}
-                        variant="outlined"
-                        color="primary">
-                    Start Recording
-                </Button>
-                <Button className={classes.buttons}
-                        onClick={() => callBoth()  }
-                        variant="outlined"
-                        color="primary">
-                    Preview
-                </Button>
-            </form>
-    <Typography className={classes.note} color="primary">* Say Stop to end the recording</Typography>
+                />  
+                    </Grid>      
+                </Grid>
+                <Grid item container
+                    direction="column"
+                    justify="space-between"
+                    alignItems="center"
+                    xs={3}
+                >
+                    <Grid item>
+                        <Button className={classes.buttonsp}
+                            onClick={() => {recognizer.startContinuousRecognitionAsync()}}
+                            >
+                                Start Recording
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <Button className={classes.buttonsp}
+                            onClick={() => callBoth()  }
+                            >
+                                Preview
+                        </Button>
+                    </Grid>
+                </Grid>    
+            </Grid>
+    <Typography className={classes.note} >Say Stop to end recording</Typography>
             {generatePreview()}
         </>
     }

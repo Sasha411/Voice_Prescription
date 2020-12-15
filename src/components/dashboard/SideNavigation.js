@@ -5,15 +5,27 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 
 const useStyles = makeStyles((theme) => ({
-    link: {
-        textDecoration: "none",
-    },
     userIcon: {
         fontSize: '80px',
     },
     link2: {
         color: '#008080',
+    },
+    primary: {
+        color: '#009688',
+        fontWeight: "bold",
+        fontFamily: "Arimo",
+        fontSize: '16px',
+
+    },
+    secondary: {
+        textDecoration: "none !important",
+        color: '#000000',
+        fontFamily: "Arimo",
+        fontSize: '16px',
+        fontWeight: "bold",
     }
+
 }))
 
 const SideNavigation = () => {
@@ -37,36 +49,41 @@ const SideNavigation = () => {
                 </IconButton>
                 </Link>
                 </Grid>
-                <Grid item>
-                    Doctor : Hey You
+                <Grid className={classes.primary} item>
+                    DR. ARCHIT JAIN
                 </Grid>
             </Grid>
+            <Grid item container
+                direction="column"
+                alignItems="center"
+            >
             <Grid item>
-                <Link className={classes.link} to="/dashboard">
+                <Link style={{textDecoration: "none"}} to="/dashboard">
                     <Button
-                        color="inherit"
+                    className={classes.secondary}
                     >
                         Dashboard
                     </Button>
                 </Link>
             </Grid>
             <Grid item>
-                <Link className={classes.link} to="/recordvoice">
+                <Link style={{textDecoration: "none"}} to="/recordvoice">
                     <Button
-                        color="inherit"
+                    className={classes.secondary}
                     >
                         Record Voice
                     </Button>
                 </Link>
             </Grid>
             <Grid item>
-                <Link className={classes.link} to="/voicehistory">
+                <Link style={{textDecoration: "none"}} to="/voicehistory">
                     <Button
-                        color="inherit"
+                    className={classes.secondary}
                     >
                         Voice History
                     </Button>
                 </Link>
+            </Grid>
             </Grid>
         </Grid>
     )
