@@ -16,7 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import {Link} from 'react-router-dom';
 import history from "../../history";
-import {connect} from 'react-redux';
+// import {doctorProfileDetails} from '../dashboard/SideNavigation';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const Profile = (props) => {
+const ShowProfile = (props) => {
     //States
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
@@ -59,70 +59,82 @@ const Profile = (props) => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const doc = props.location.state.details;
+
+    var docDetails = {
+        FirstName: doc.FirstName,
+        LastName: doc.LastName,
+        Age: doc.Age,
+        Gender: doc.Gender,
+        PhoneNumber: doc.PhoneNumber,
+        Email: doc.Email,
+        Qualification: doc.Qualification,
+        Specialization: doc.Specialization,
+        StateRegistrationNo: doc.StateRegistrationNo,
+
+        Name: doc.Name,
+        Address: doc.Address,
+        CIN: doc.CIN,
+        RegisteredOffice: doc.RegisteredOffice,
+        ContactNumber: doc.ContactNumber,
+        HospitalEmail: doc.HospitalEmail,
+    }
+
     //Helper Functions
-    const createGridItem = (item) => {
+    const createGridItem = (item, props) => {
         return (
             <Grid className={classes.gridItem}
                   item>
-                <TextField onChange={(e) => abc(item, e)}
-                           autoComplete
-                           label={item}/>
+                <TextField
+                    defaultValue={doc[item]}
+                    // value={doc[item]}
+                    onChange={(e) => abc(item, e)}
+                    autoComplete
+                    label={item}
+                />
             </Grid>
         )
     }
 
     function abc(item, e) {
-        docDetails[item] = e.target.value
-        // console.log(docDetails[item])
+        docDetails[item] = e.target.value;
+        console.log(docDetails[item])
     }
 
-    var docDetails = {
-        FirstName: '',
-        LastName: '',
-        Age: 0,
-        Gender: '',
-        PhoneNumber: '',
-        Email: '',
-        Qualification: '',
-        Specialization: '',
-        StateRegistrationNo: '',
-
-        Name: '',
-        Address: '',
-        CIN: '',
-        RegisteredOffice: '',
-        ContactNumber: '',
-        HospitalEmail: '',
-    }
+    const id = doc.id;
 
     function onSubmitDocDetailChanges() {
-        console.log(docDetails);
-        fetch('http://localhost:3000/profile', {
-            method: 'post',
+        var finalDocDetails = {
+            firstName: docDetails.FirstName,
+            lastName: docDetails.LastName,
+            age: docDetails.Age,
+            gender: docDetails.Gender,
+            phoneNo: docDetails.PhoneNumber,
+            email: docDetails.Email,
+            qualification: docDetails.Qualification,
+            specialization: docDetails.Specialization,
+            stateRegistrationNo: docDetails.StateRegistrationNo,
+
+            hospitalName: docDetails.Name,
+            hospitalAddress: docDetails.Address,
+            hospitalCin: docDetails.CIN,
+            hospitalRegdOffice: docDetails.RegisteredOffice,
+            hospitalContactNo: docDetails.ContactNumber,
+            hospitalEmail: docDetails.HospitalEmail,
+        }
+
+        console.log('***', id, finalDocDetails);
+        fetch(`http://localhost:3000/profile/${id}`, {
+            method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                userName: props.user,
-                firstName: docDetails.FirstName,
-                lastName: docDetails.LastName,
-                age: docDetails.Age,
-                gender: docDetails.Gender,
-                phoneNo: docDetails.PhoneNumber,
-                email: docDetails.Email,
-                qualification: docDetails.Qualification,
-                specialization: docDetails.Specialization,
-                stateRegistrationNo: docDetails.StateRegistrationNo,
-
-                hospitalName: docDetails.Name,
-                hospitalAddress: docDetails.Address,
-                hospitalCin: docDetails.CIN,
-                hospitalRegdOffice: docDetails.RegisteredOffice,
-                hospitalContactNo: docDetails.ContactNumber,
-                hospitalEmail: docDetails.HospitalEmail,
+                doctorProfile: finalDocDetails,
             })
         })
             .then(response => response.json())
             .then(history.push('/dashboard'))
-            // .then(response => response.redirect('/dashboard'));
+        // .then(response => response.redirect('/dashboard'));
     }
 
 
@@ -166,15 +178,15 @@ const Profile = (props) => {
                                 <Typography variant="h4"
                                             gutterBottom>Doctor's Details</Typography>
                             </Grid>
-                            {createGridItem("FirstName")}
-                            {createGridItem("LastName")}
-                            {createGridItem("Age")}
-                            {createGridItem("Gender")}
-                            {createGridItem("PhoneNumber")}
-                            {createGridItem("Email")}
-                            {createGridItem("Qualification")}
-                            {createGridItem("Specialization")}
-                            {createGridItem("StateRegistrationNo")}
+                            {createGridItem("FirstName", props)}
+                            {createGridItem("LastName", props)}
+                            {createGridItem("Age", props)}
+                            {createGridItem("Gender", props)}
+                            {createGridItem("PhoneNumber", props)}
+                            {createGridItem("Email", props)}
+                            {createGridItem("Qualification", props)}
+                            {createGridItem("Specialization", props)}
+                            {createGridItem("StateRegistrationNo", props)}
                             {/*<Grid style={{marginTop: "10px", marginBottom: "45px"}}*/}
                             {/*      item>*/}
                             {/*    <TextField label="StateRegistrationNo"/>*/}
@@ -194,16 +206,16 @@ const Profile = (props) => {
                                 <Typography variant="h4"
                                             gutterBottom>Hospital's Details</Typography>
                             </Grid>
-                            {createGridItem("Name")}
-                            {createGridItem("Address")}
-                            {createGridItem("CIN")}
-                            {createGridItem("RegisteredOffice")}
-                            {createGridItem("ContactNumber")}
-                            {createGridItem("HospitalEmail")}
-                        {/*    <Grid style={{marginTop: "10px", marginBottom: "45px"}}*/}
-                        {/*          item>*/}
-                        {/*        <TextField label="HospitalEmail"/>*/}
-                        {/*    </Grid>*/}
+                            {createGridItem("Name", props)}
+                            {createGridItem("Address", props)}
+                            {createGridItem("CIN", props)}
+                            {createGridItem("RegisteredOffice", props)}
+                            {createGridItem("ContactNumber", props)}
+                            {createGridItem("HospitalEmail", props)}
+                            {/*    <Grid style={{marginTop: "10px", marginBottom: "45px"}}*/}
+                            {/*          item>*/}
+                            {/*        <TextField label="HospitalEmail"/>*/}
+                            {/*    </Grid>*/}
                         </Grid>
                     </Paper>
                 </Grid>
@@ -222,8 +234,4 @@ const Profile = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {user: state.email.userId}
-}
-
-export default connect (mapStateToProps, null) (Profile)
+export default ShowProfile

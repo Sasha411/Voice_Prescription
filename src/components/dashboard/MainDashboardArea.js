@@ -8,8 +8,6 @@ import * as sdk from 'microsoft-cognitiveservices-speech-sdk'
 import { Button, Grid, Paper, TextField } from '@material-ui/core';
 //import key from './key';
 
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         '& .MuiTextField-root': {
@@ -38,7 +36,14 @@ const useStyles = makeStyles((theme) => ({
         color: "#009688",
         fontFamily: "Arimo",
         fontWeight: "bold",
-        fontSize: "20px",
+        fontSize: "16px",
+    },
+    note2: {
+        marginLeft: "10px",
+        color: "#009688",
+        fontFamily: "Arimo",
+        fontWeight: "bold",
+        fontSize: "12px",
     },
     ppr: {
         marginTop: "40px",
@@ -87,8 +92,8 @@ export const MainDashboardArea = (props) => {
         const list = ["Name","Age","Gender","Symptoms","Diagnosis","Prescription","Advice"];
         for(var field in list){
             var index = text.indexOf(list[6-field]);
-            console.log("Looking for : "+ list[6-field]);
-            console.log(index);
+            // console.log("Looking for : "+ list[6-field]);
+            // console.log(index);
             var changed_rec = rec;
             if(index!= -1){
                 var listItem = list[6-field];
@@ -108,11 +113,8 @@ export const MainDashboardArea = (props) => {
             }
             setRec(changed_rec);
         }
-
-            //await axios.GET( `localhost::3000/${unique.ID}/${report.ID})
-
-        
     }
+
     const createGridItem = (field) => {
         return (
             <Grid item>
@@ -227,12 +229,15 @@ const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
                 realText = e.result.text;
             }
             console.log(realText);
-            if(realText === 'Stop.' || realText === 'stop.'){
+            if(realText === 'Stop.' || realText === 'stop.' || realText === 'stop' || realText === 'Stop'){
                 recognizer.stopContinuousRecognitionAsync();
                 realText = '';
                 setText(text => text + realText);
             }
-            else if(realText === 'Edge.' || realText === 'edge.' || realText === 'edge' || realText === 'H.' || realText === 'H'){
+            else if(realText === 'Name.' || realText === 'name.' || realText === 'name'){
+                setText(text => text + 'Name' );
+            }
+            else if(realText === 'age' || realText === 'age.' || realText === 'Age.' || realText === 'Edge.' || realText === 'edge.' || realText === 'edge' || realText === 'H.' || realText === 'H'){
                 console.log("edge to age");
                 setText(text => text + "Age");
             }
@@ -251,19 +256,19 @@ const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
                 }
                 
             }
-            else if (realText === 'Mail.' || realText === 'mail.' || realText === 'Mail'){
+            else if (realText === 'male' || realText === 'male.' || realText === 'Male.' || realText === 'Mail.' || realText === 'mail.' || realText === 'Mail'){
                 setText(text => text + "Male");
             }
-            else if(realText === 'Symptoms.' || realText === 'symptoms.'){
+            else if(realText === 'Symptoms.' || realText === 'symptoms.' || realText === 'symptoms'){
                 setText(text => text + 'Symptoms' );
             }
-            else if(realText === 'Diagnosis.' || realText === 'diagnosis.' ){
+            else if(realText === 'Diagnosis.' || realText === 'diagnosis.' || realText === 'diagnosis'){
                 setText(text => text + 'Diagnosis');
             }
-            else if(realText === 'Prescription.' || realText === 'prescription.'){
+            else if(realText === 'Prescription.' || realText === 'prescription.' || realText === 'prescription'){
                 setText(text => text + 'Prescription');
             }
-            else if(realText === 'advice.' || realText === 'Advice.'){
+            else if(realText === 'advice.' || realText === 'Advice.' || realText === 'advice'){
                 setText(text => text + 'Advice');
             }
             else{
@@ -294,15 +299,8 @@ const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
     
         recognizer.stopContinuousRecognitionAsync();
     };
-    
 
 
-
-
-
-
-    ///
-    
     if (HeaderView() === '/dashboard') {
         return dashboard(classes);
     } else if (HeaderView() === '/recordvoice') {
@@ -312,12 +310,12 @@ const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
                 <Link className={classes.primary}
                       href="/"
                       onClick={handleClick}>
-                    RecordVoice
+                    &nbsp;RecordVoice
                 </Link>
                 <Typography className={classes.secondary}>Home</Typography>
             </Breadcrumbs>
             <div className={classes.messg}>
-                <Typography className={classes.text_1} >Record your voice here:-</Typography>
+                <Typography className={classes.text_1} >&nbsp;Record your voice here:-</Typography>
             </div>
             <Grid container 
                 direction="row"
@@ -361,7 +359,11 @@ const recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig);
                     </Grid>
                 </Grid>    
             </Grid>
-    <Typography className={classes.note} >Say Stop to end recording</Typography>
+    <Typography className={classes.note} >Say STOP to end recording</Typography>
+    <Typography className={classes.note2} >*Press preview to get the idea of schema</Typography>
+    <Typography className={classes.note2} >*First speak the key word then its details in the same order as mentioned in preview</Typography>
+    <Typography className={classes.note2} >*Ex: Speak like this: Name John (give a pause) Age 20 and so on</Typography>
+    <Typography className={classes.note2} >*Speak clearly in a noise free environment and with pauses after each word</Typography>
             {generatePreview()}
         </>
     }
@@ -397,12 +399,3 @@ export const dashboard = (classes) => {
         </>
     )
 }
-
-
-
-
-
-
-
-
-
