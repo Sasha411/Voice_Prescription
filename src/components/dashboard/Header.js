@@ -9,7 +9,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import {openDrawer, closeDrawer} from '../actions'
 import { connect } from 'react-redux';
 import SideNavigation from './SideNavigation';
-import {MainDashboardArea} from './MainDashboardArea';
+import MainDashboardArea from './MainDashboardArea';
 import { Link } from 'react-router-dom';
 import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
 
@@ -156,7 +156,7 @@ const prevOpen = React.useRef(open);
                         edge="end"
                         aria-label="user"
                     >
-                        <Link style={{color: "rgba(0, 0, 0, 0.54)"}} to='/profile'><AccountCircleOutlinedIcon/></Link>
+                        <Link style={{color: "rgba(0, 0, 0, 0.54)"}} to='#'><AccountCircleOutlinedIcon/></Link>
                     </IconButton>
                     </Grid>
                     </Grid>
@@ -188,7 +188,7 @@ const prevOpen = React.useRef(open);
 }
 
 const mapStateToProps= (state) => {
-    return {isDrawerOpen: state.drawer.isDrawerOpen}
+    return {isDrawerOpen: state.drawer.isDrawerOpen, user: state.email.userId}
 }
 
 export default connect(mapStateToProps, {openDrawer, closeDrawer})(Header)

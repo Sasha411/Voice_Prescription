@@ -76,7 +76,7 @@ const Login = (props) => {
         })
             .then(response => response.json())
             .then(history.push('/dashboard'))
-            // .then(response => response.redirect('/dashboard'));
+        // .then(response => response.redirect('/dashboard'));
         // .then(user => {
         //     if (user.id) {
         //         this.props.loadUser(user);
@@ -86,8 +86,8 @@ const Login = (props) => {
         //     .then(history.push('/dashboard'))
     }
 
-    function onSubmitRegister() {
-        this.props.signIn(dummyDetails.username);
+    function onSubmitRegister(props) {
+        props.signIn(dummyDetails.username);
         fetch('http://localhost:3000/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
@@ -97,16 +97,7 @@ const Login = (props) => {
             })
         })
             .then(response => response.json())
-            // .then(history.push('/profile'))
-        // .then(response => response.json())
-        // .then(history.push('/profile'));
-        // .then(response => response.redirect('/profile'))
-// .then(user => {
-//     if (user.id) {
-//         this.props.loadUser(user);
-//         this.props.onRouteChange('home');
-//     }
-// })
+            .then(history.push('/profile'))
     }
 
     var dummyDetails = {
@@ -123,7 +114,7 @@ const Login = (props) => {
                 </Typography>
                 <form className={classes.form}
                       noValidate>
-                    {(props.isSignIn) ?
+                    {(props["0"].isSignIn) ?
                         <>
                             <TextField
                                 variant="outlined"
@@ -176,7 +167,7 @@ const Login = (props) => {
                         id="password"
                         autoComplete="current-password"
                     />
-                    {(props.isSignIn) ?
+                    {(props["0"].isSignIn) ?
                         <>
                             <TextField
                                 variant="outlined"
@@ -194,7 +185,7 @@ const Login = (props) => {
                                 variant="contained"
                                 color="primary"
                                 className={classes.submit}
-                                onClick={onSubmitRegister}
+                                onClick={()=>{onSubmitRegister(props)}}
                             >
                                 Sign Up
                             </Button>
@@ -266,7 +257,7 @@ const Login = (props) => {
                     </Avatar>
                     <Paper square>
                         <Tabs
-                            value={props.isSignIn}
+                            value={props["0"].isSignIn}
                             indicatorColor="primary"
                             textColor="primary"
                         >

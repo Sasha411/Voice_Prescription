@@ -16,8 +16,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import {Link} from 'react-router-dom';
 import history from "../../history";
+import {connect} from 'react-redux';
 // import {doctorProfileDetails} from '../dashboard/SideNavigation';
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -234,4 +234,9 @@ const ShowProfile = (props) => {
     )
 }
 
-export default ShowProfile
+
+const mapStateToProps = (state) => {
+    return {user: state.email.userId}
+}
+
+export default connect (mapStateToProps, null) (ShowProfile)

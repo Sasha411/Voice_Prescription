@@ -98,7 +98,7 @@ const Profile = (props) => {
     function onSubmitDocDetailChanges() {
         console.log(docDetails);
         fetch('http://localhost:3000/profile', {
-            method: 'post',
+            method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 userName: props.user,
@@ -124,7 +124,6 @@ const Profile = (props) => {
             .then(history.push('/dashboard'))
             // .then(response => response.redirect('/dashboard'));
     }
-
 
     //Return
     return (

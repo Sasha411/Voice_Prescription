@@ -1,5 +1,6 @@
 import Header from '../dashboard/Header'
 import React from 'react'
+import {connect} from 'react-redux';
 
 const VoiceRecorder = () => {
     return (
@@ -8,5 +9,8 @@ const VoiceRecorder = () => {
         </div>
     )
 }
+const mapStateToProps = (state) => {
+    return {user: state.email.userId}
+}
 
-export default VoiceRecorder
+export default connect (mapStateToProps, null) (VoiceRecorder)

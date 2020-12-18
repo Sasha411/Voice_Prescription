@@ -1,5 +1,5 @@
 const INITIAL = {
-    isSignIn: 1,
+    isSignIn: 0,
     status: "Sign In"
 }
 
