@@ -6,7 +6,7 @@ import Dashboard from './dashboard/Dashboard'
 import VoiceRecorder from './voicerecord/VoiceRecorder'
 import Profile from './profile/Profile'
 import ShowProfile from "./profile/ShowProfile";
-import VoiceHistory from './voiceHistory/voiceHistory'
+import VoiceHistory from './voiceHistory/VoiceHistory'
 import ReportInfo from './voiceHistory/ReportInfo'
 
 export class App extends Component {

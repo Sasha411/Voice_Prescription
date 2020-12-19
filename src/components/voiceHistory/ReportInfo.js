@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     paper2: {
-        marginLeft: "6.5vw",
+        marginLeft: "3.5vw",
         width:"72.5vw",
         minHeight: "200px",
         paddingTop: "40px",
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     },
     root: {
         display: 'flex',
-
     },
     toolbar: {
         backgroundColor: '#008080',
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const ReportInfo = () => {
     const classes = useStyles()
     return (<>
-            <div style={{width: "100vw", height: "100vh",marginBottom: "20px"}}>
+            <div style={{width: "100vw", height: "100vh",marginBottom: "20px", overflowX: "hidden"}}>
                 <div className={classes.root}>
                     <AppBar position="static">
                         <Toolbar className={classes.toolbar}>
@@ -51,7 +50,7 @@ const ReportInfo = () => {
                 <Grid container
                       direction="column"
                       spacing={10}
-                ><Paper elevation={3} style={{width: "80vw",marginLeft: "20vh", height: "100vh",paddingTop: "20px",marginTop: "60px",backgroundColor: "#F8F8F8"}}>
+                ><Paper elevation={3} style={{width: "80vw",marginLeft: "12.5vw", height: "100vh",paddingTop: "20px",marginTop: "60px",backgroundColor: "#F8F8F8"}}>
                     <Grid item container
                           direction="column"
                           justify="flex-start"

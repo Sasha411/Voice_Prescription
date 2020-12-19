@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme)=>({
     },
 }))
 
-const DashboardProfile = () => {
+export const DashboardProfile = () => {
     const classes = useStyles();
     return (
         <div>

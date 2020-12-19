@@ -7,9 +7,9 @@ import {useLocation} from 'react-router-dom'
 import * as sdk from 'microsoft-cognitiveservices-speech-sdk'
 import {Button, Grid, Paper, TextField} from '@material-ui/core';
 import history from "../../history";
-import voiceHistory from '../voiceHistory/voiceHistory';
-import voiceContent from '../voiceHistory/voiceContent'
-import DashboardProfile from './DashboardProfile';
+import VoiceHistory from '../voiceHistory/VoiceHistory';
+import {VoiceContent} from '../voiceHistory/VoiceContent'
+import {DashboardProfile} from './DashboardProfile';
 import {connect} from "react-redux";
 import {signIn, signOut} from "../actions";
 // import Axios from "axios";
@@ -345,7 +345,7 @@ const MainDashboardArea = (props) => {
     if (HeaderView() === '/dashboard') {
         return DashboardProfile();
     } else if (HeaderView() === '/voicehistory') {
-        return voiceContent();
+        return VoiceContent();
     } else if (HeaderView() === '/recordvoice') {
         return <>
             <Breadcrumbs separator="›"

@@ -12,13 +12,14 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles(()=> ({
     card : {
         minWidth: "200px",
+        backgroundColor: "rgba(189, 251, 248, 0.56)",
     },
     button: {
         marginLeft : "20px",
     }
 }))
 
-const VoiceContent = () => {
+export const VoiceContent = () => {
     const classes = useStyles();
     return (
         <Grid container
@@ -82,4 +83,4 @@ const mapStateToProps = (state) => {
     return {user: state.email.userId}
 }
 
-export default connect (mapStateToProps, null) (voiceContent)
+export default connect (mapStateToProps, null) (VoiceContent)
