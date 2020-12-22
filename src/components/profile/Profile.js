@@ -34,11 +34,14 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        display: "flex",
+        justifyContent: "center",
+        width: "90vw"
     },
     paper: {
         //height: "40vh",
         //width: "25vw",
-        minWidth: "25vw",
+        minWidth: "40vw",
     },
     gridItem: {
         marginTop: "10px",
@@ -64,7 +67,7 @@ const Profile = (props) => {
         return (
             <Grid className={classes.gridItem}
                   item>
-                <TextField onChange={(e) => abc(item, e)}
+                <TextField style={{width: "35vw"}} onChange={(e) => abc(item, e)}
                            autoComplete
                            label={item}/>
             </Grid>
@@ -160,10 +163,11 @@ const Profile = (props) => {
                               direction="column"
                               justify="flex-end"
                               alignItems="center"
+                              style={{paddingBottom: "20px", paddingTop: "20px"}}
                         >
                             <Grid item>
-                                <Typography variant="h4"
-                                            gutterBottom>Doctor's Details</Typography>
+                                <Typography variant="h4" style={{color: "#008080"}}
+                                            gutterBottom><strong>Doctor's Details</strong></Typography>
                             </Grid>
                             {createGridItem("FirstName")}
                             {createGridItem("LastName")}
@@ -188,10 +192,11 @@ const Profile = (props) => {
                               direction="column"
                               justify="flex-end"
                               alignItems="center"
+                              style={{paddingBottom: "20px", paddingTop: "20px"}}
                         >
                             <Grid item>
-                                <Typography variant="h4"
-                                            gutterBottom>Hospital's Details</Typography>
+                                <Typography variant="h4" style={{color: "#008080"}}
+                                            gutterBottom><strong>Hospital's Details</strong></Typography>
                             </Grid>
                             {createGridItem("Name")}
                             {createGridItem("Address")}
@@ -207,16 +212,23 @@ const Profile = (props) => {
                     </Paper>
                 </Grid>
             </Grid>
-
-            <Button
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={() => {onSubmitDocDetailChanges()}}
+            <Grid container
+                justify="center"
+                alignItems="center"
             >
-                Save Changes
-            </Button>
+                <Grid item>
+                    <Button
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    onClick={() => {onSubmitDocDetailChanges()}}
+                >
+                    Save Changes
+                </Button>
+                </Grid>
+            </Grid>
+            
         </>
     )
 }
