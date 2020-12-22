@@ -34,11 +34,14 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        display: "flex",
+        justifyContent: "center",
+        width: "90vw"
     },
     paper: {
         //height: "40vh",
         //width: "25vw",
-        minWidth: "25vw",
+        minWidth: "40vw",
     },
     gridItem: {
         marginTop: "10px",
@@ -61,7 +64,7 @@ const ShowProfile = (props) => {
     };
 
     const doc = props.location.state.details;
-
+    
     var docDetails = {
         FirstName: doc.FirstName,
         LastName: doc.LastName,
@@ -173,10 +176,11 @@ const ShowProfile = (props) => {
                               direction="column"
                               justify="flex-end"
                               alignItems="center"
+                              style={{paddingBottom: "20px", paddingTop: "20px"}}
                         >
                             <Grid item>
-                                <Typography variant="h4"
-                                            gutterBottom>Doctor's Details</Typography>
+                                <Typography variant="h4" style={{color: "#008080"}}
+                                            gutterBottom><strong>Doctor's Details</strong></Typography>
                             </Grid>
                             {createGridItem("FirstName", props)}
                             {createGridItem("LastName", props)}
@@ -201,10 +205,11 @@ const ShowProfile = (props) => {
                               direction="column"
                               justify="flex-end"
                               alignItems="center"
+                              style={{paddingBottom: "20px", paddingTop: "20px"}}
                         >
                             <Grid item>
-                                <Typography variant="h4"
-                                            gutterBottom>Hospital's Details</Typography>
+                                <Typography variant="h4" style={{color: "#008080"}}
+                                            gutterBottom><strong>Hospital's Details</strong></Typography>
                             </Grid>
                             {createGridItem("Name", props)}
                             {createGridItem("Address", props)}
@@ -221,15 +226,22 @@ const ShowProfile = (props) => {
                 </Grid>
             </Grid>
 
-            <Button
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={() => {onSubmitDocDetailChanges()}}
+            <Grid container
+                justify="center"
+                alignItems="center"
             >
-                Save Changes
-            </Button>
+                <Grid item>
+                    <Button
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    onClick={() => {onSubmitDocDetailChanges()}}
+                >
+                    Save Changes
+                </Button>
+                </Grid>
+            </Grid>
         </>
     )
 }
