@@ -95,21 +95,6 @@ const MainDashboardArea = (props) => {
     })
     var dummy_rec = rec;
 
-    // var id;
-    //
-    // const setIDValue = (data) => {
-    //     console.log("set id valueeeeee")
-    //     for (var i = 0; i < data.length; i++) {
-    //         if (data[i].userName === props.user) {
-    //             id = data[i]._id;
-    //         }
-    //     }
-    //
-    //
-    //         // .then(response => response.json())
-    //         // .then(history.push('/dashboard'))
-    // }
-
     //to save the change in the db
     function onReportChanges() {
         var report = {
@@ -344,8 +329,8 @@ const MainDashboardArea = (props) => {
 
     if (HeaderView() === '/dashboard') {
         return DashboardProfile();
-    } else if (HeaderView() === '/voicehistory') {
-        return VoiceContent();
+    } else if (HeaderView() === '/reports/showall') {
+        return <VoiceContent user1={props.user}/>;
     } else if (HeaderView() === '/recordvoice') {
         return <>
             <Breadcrumbs separator="›"

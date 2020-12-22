@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
     image: {
-        backgroundImage: 'url(https://source.unsplash.com/random)',
+        backgroundImage: 'url(https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)',
         backgroundRepeat: 'no-repeat',
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -116,28 +116,28 @@ const Login = (props) => {
                       noValidate>
                     {(props["0"].isSignIn) ?
                         <>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                // required
-                                fullWidth
-                                id="firstname"
-                                label="First Name"
-                                name="firstname"
-                                autoComplete="firstname"
-                                autoFocus
-                            />
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                // required
-                                fullWidth
-                                id="lastname"
-                                label="Last Name"
-                                name="lastname"
-                                autoComplete="lastname"
-                                autoFocus
-                            />
+                            {/*<TextField*/}
+                            {/*    variant="outlined"*/}
+                            {/*    margin="normal"*/}
+                            {/*    // required*/}
+                            {/*    fullWidth*/}
+                            {/*    id="firstname"*/}
+                            {/*    label="First Name"*/}
+                            {/*    name="firstname"*/}
+                            {/*    autoComplete="firstname"*/}
+                            {/*    autoFocus*/}
+                            {/*/>*/}
+                            {/*<TextField*/}
+                            {/*    variant="outlined"*/}
+                            {/*    margin="normal"*/}
+                            {/*    // required*/}
+                            {/*    fullWidth*/}
+                            {/*    id="lastname"*/}
+                            {/*    label="Last Name"*/}
+                            {/*    name="lastname"*/}
+                            {/*    autoComplete="lastname"*/}
+                            {/*    autoFocus*/}
+                            {/*/>*/}
                         </>
                         : null
 
@@ -169,17 +169,17 @@ const Login = (props) => {
                     />
                     {(props["0"].isSignIn) ?
                         <>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                // required
-                                fullWidth
-                                name="confirmpassword"
-                                label="Confirm Password"
-                                type="confirm password"
-                                id="confirm password"
-                                autoComplete="current-confirm-password"
-                            />
+                            {/*<TextField*/}
+                            {/*    variant="outlined"*/}
+                            {/*    margin="normal"*/}
+                            {/*    // required*/}
+                            {/*    fullWidth*/}
+                            {/*    name="confirmpassword"*/}
+                            {/*    label="Confirm Password"*/}
+                            {/*    type="confirm password"*/}
+                            {/*    id="confirm password"*/}
+                            {/*    autoComplete="current-confirm-password"*/}
+                            {/*/>*/}
                             <Button
                                 fullWidth
                                 variant="contained"
@@ -196,11 +196,12 @@ const Login = (props) => {
                                 Already have an account? Sign In
                             </Button>
                         </>
-                        : <><FormControlLabel
-                            control={<Checkbox value="remember"
-                                               color="primary"/>}
-                            label="Remember me"
-                        />
+                        : <>
+                        {/*    <FormControlLabel*/}
+                        {/*    control={<Checkbox value="remember"*/}
+                        {/*                       color="primary"/>}*/}
+                        {/*    label="Remember me"*/}
+                        {/*/>*/}
                             <Button
 
                                 fullWidth
@@ -217,9 +218,9 @@ const Login = (props) => {
                                 justify="space-between"
                                 alignItems="center"
                             >
-                                <Grid item>
-                                    <Link to="/accountrecovery">Forgot Password</Link>
-                                </Grid>
+                                {/*<Grid item>*/}
+                                    {/*<Link to="/accountrecovery">Forgot Password</Link>*/}
+                                {/*</Grid>*/}
                                 <Grid item>
                                     <Button
                                         onClick={() => props.signIn()}

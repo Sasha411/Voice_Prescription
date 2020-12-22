@@ -12,6 +12,7 @@ import SideNavigation from './SideNavigation';
 import MainDashboardArea from './MainDashboardArea';
 import { Link } from 'react-router-dom';
 import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -156,7 +157,7 @@ const prevOpen = React.useRef(open);
                         edge="end"
                         aria-label="user"
                     >
-                        <Link style={{color: "rgba(0, 0, 0, 0.54)"}} to='#'><AccountCircleOutlinedIcon/></Link>
+                        <Link style={{color: "rgba(0, 0, 0, 0.54)"}} to='/'><ExitToAppIcon/></Link>
                     </IconButton>
                     </Grid>
                     </Grid>

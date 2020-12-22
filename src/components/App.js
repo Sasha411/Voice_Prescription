@@ -16,10 +16,10 @@ export class App extends Component {
                 <Route path="/" exact component={Login} />
                 <Route path="/dashboard" exact component={Dashboard} />
                 <Route path="/recordvoice" exact component={VoiceRecorder} />
-                <Route path="/voicehistory" exact component={VoiceHistory} />
+                <Route path="/reports/showall" exact component={VoiceHistory} />
                 <Route path="/profile" exact component={Profile} />
                 <Route path="/profile/showall" exact component={ShowProfile} />
-                <Route path="/voicehistory/report" exact component={ReportInfo} />
+                <Route path="/reports/showall/:id" exact component={ReportInfo} />
             </Router>
         )
     }

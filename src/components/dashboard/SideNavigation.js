@@ -7,26 +7,6 @@ import Axios from "axios";
 import {connect} from "react-redux";
 import {signIn, signOut} from "../actions";
 
-var doctorProfileDetails = {
-    id: '',
-    FirstName: '',
-    LastName: '',
-    Age: '',
-    Gender: '',
-    PhoneNumber: '',
-    Email: '',
-    Qualification: '',
-    Specialization: '',
-    StateRegistrationNo: '',
-
-    Name: '',
-    Address: '',
-    CIN: '',
-    RegisteredOffice: '',
-    ContactNumber: '',
-    HospitalEmail: '',
-}
-
 const useStyles = makeStyles((theme) => ({
     userIcon: {
         fontSize: '80px',
@@ -56,13 +36,25 @@ const SideNavigation = (props) => {
     // setTimeout(() => {console.log('*****', props.user);})
     const classes = useStyles()
 
-    const getProfile = () => {
-        Axios({
-            url: `http://localhost:3000/profile/`,
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'},
-        })
-            .then(response => console.log(response.data.message));
+    //for doctor profile details
+    var doctorProfileDetails = {
+        id: '',
+        FirstName: '',
+        LastName: '',
+        Age: null,
+        Gender: '',
+        PhoneNumber: '',
+        Email: '',
+        Qualification: '',
+        Specialization: '',
+        StateRegistrationNo: '',
+
+        Name: '',
+        Address: '',
+        CIN: '',
+        RegisteredOffice: '',
+        ContactNumber: '',
+        HospitalEmail: '',
     }
 
     const setDocValues = (data) => {
@@ -109,6 +101,43 @@ const SideNavigation = (props) => {
                 }
             )
     }
+
+
+    // //for report details
+    // var reportsDetails = []
+    //
+    // const setReportsValues = (data) => {
+    //     var j=0;
+    //     for(var i=0; i<data.length; i++) {
+    //         if(data[i].userName === props.user) {
+    //             console.log("reportsssss: ", data[i]);
+    //             reportsDetails[j] = data[i];
+    //             j++;
+    //         }
+    //     }
+    // }
+    //
+    // const getReportData = () => {
+    //     fetch(`http://localhost:3000/reports/showall`, {
+    //         method: 'GET',
+    //         headers: {'Content-Type': 'application/json'},
+    //     })
+    //         .then(response => response.json())
+    //         .then(response => setReportsValues(response.reports))
+    //         // .then(response => response.doctorProfile)
+    //         // .then(console.log(doctorProfileDetails))
+    //         .then(() => {
+    //                 console.log('history one: ', reportsDetails);
+    //                 history.push({
+    //                     pathname: '/reports/showall',
+    //                     state: {details: reportsDetails}
+    //                 });
+    //                 // localStorage.setItem('data', doctorProfileDetails);
+    //             }
+    //         )
+    // }
+
+
 
     return (
         <Grid container
@@ -160,7 +189,9 @@ const SideNavigation = (props) => {
                 </Link>
             </Grid>
             <Grid item>
-                <Link style={{textDecoration: "none"}} to="/voicehistory">
+                <Link style={{textDecoration: "none"}}
+                      // onClick={() => getReportData()}
+                      to="/reports/showall">
                     <Button
                     className={classes.secondary}
                     >

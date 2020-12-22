@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../dashboard/Header'
 import {connect} from 'react-redux';
 
-const voiceHistory = () => {
+const voiceHistory = (props) => {
     return (
         <div>
             <Header />
